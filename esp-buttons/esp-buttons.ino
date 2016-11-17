@@ -29,7 +29,7 @@ uint8_t justreleased[BUTTONS_NUM] = {0};
 
 const uint32_t BUTTON_DEBOUNCE_TIME = 200;
 const uint32_t POLL_BUTTON_TIME = 500;
-const uint32_t REQUEST_TIME = 15000;
+const uint32_t REQUEST_TIME = 30000;
 
 const char* serverButtonsEndpoint = "http://esp-buttons.herokuapp.com/buttons";
 
