@@ -179,13 +179,15 @@ void loop()
   }
   if (millis() >= (lastTimeRequest + REQUEST_TIME)) {
     if (WiFi.status() == WL_CONNECTED) {
-      String httpButtonsRequest = String(WiFi.macAddress() + "\r\n");
+      String httpButtonsRequest = String(WiFi.macAddress() + ";");
       for (size_t i = 0; i < BUTTONS_NUM; ++i) {
         httpButtonsRequest += "BTN";
         httpButtonsRequest += String(i + 1);
         httpButtonsRequest += ":";
         httpButtonsRequest += String(buttonsPresses[i]);
-        httpButtonsRequest += "\r\n";
+        if (i != BUTTONS_NUM - 1) {
+          httpButtonsRequest += ";";
+        }
       }
       Serial.println("REQUEST BODY:");
       Serial.println(httpButtonsRequest);
@@ -198,8 +200,7 @@ void loop()
         Serial.printf("HTTP code: %d\n", httpCode);
         if (httpCode == HTTP_CODE_OK) {
           clearButtons = true;
-        }
-        else {
+        } else {
           Serial.println("ERROR!");  
         }
         String response = http.getString();
