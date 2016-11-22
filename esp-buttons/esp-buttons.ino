@@ -28,7 +28,7 @@ uint8_t justpressed[BUTTONS_NUM] = {0};
 uint8_t justreleased[BUTTONS_NUM] = {0};
 
 const uint32_t BUTTON_DEBOUNCE_TIME = 200;
-const uint32_t POLL_BUTTON_TIME = 500;
+const uint32_t POLL_BUTTON_TIME = 600;
 const uint32_t REQUEST_TIME = 30000;
 
 // const char* serverButtonsEndpoint = "http://esp-buttons.herokuapp.com/buttons";
@@ -167,7 +167,7 @@ void loop()
         Serial.printf("BTN%u\n", i + 1);
         ++buttonsPresses[i];
       }
-      Serial.printf("BTN presses: %u\t%u\t%u\t%u\t%u\n", buttonsPresses[0], buttonsPresses[1], buttonsPresses[2], buttonsPresses[3], buttonsPresses[4]);
+//      Serial.printf("BTN presses: %u\t%u\t%u\t%u\t%u\n", buttonsPresses[0], buttonsPresses[1], buttonsPresses[2], buttonsPresses[3], buttonsPresses[4]);
       justpressed[i] = 0;
     }
     lastTime = millis();    
@@ -187,6 +187,7 @@ void loop()
         httpButtonsRequest += String(buttonsPresses[i]);
         httpButtonsRequest += "\r\n";
       }
+      Serial.println("REQUEST BODY:");
       Serial.println(httpButtonsRequest);
     
       http.begin(serverButtonsEndpoint);
