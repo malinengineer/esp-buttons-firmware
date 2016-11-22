@@ -32,7 +32,7 @@ const uint32_t POLL_BUTTON_TIME = 600;
 const uint32_t REQUEST_TIME = 30000;
 
 // const char* serverButtonsEndpoint = "http://esp-buttons.herokuapp.com/buttons";
-const char* serverButtonsEndpoint = "mirtes99.ddns.net:1001/record/post";
+const char* serverButtonsEndpoint = "http://mirtes99.ddns.net:1001/record/post";
 
 HTTPClient http;
 uint16_t buttonsPresses[BUTTONS_NUM] = {0};
